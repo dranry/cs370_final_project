@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+
+import javax.swing.JOptionPane;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -73,7 +76,7 @@ public class jdbc {
 		RecipeApp.id ++;
 	}
 	
-	public static void checkUser(String user, String pass) throws SQLException {
+	public static int checkUser(String user, String pass) throws SQLException {
 		Connection con;
 		try {
 			con = DriverManager.getConnection(getUrl(), getUser(), getPassword());
@@ -82,6 +85,31 @@ public class jdbc {
 			e.printStackTrace();
 			con = null;
 		}
+		Statement s = con.createStatement();
+		
+		
+		
+		if (user.length()>0 && pass.length()>0)
+		{
+		    String query = "Select * from user_name Where Username='" + user + "' and Password='" + pass + "'";
+
+		    ResultSet rs = s.executeQuery(query);
+		    
+		   if (rs.next()) 
+		   {
+
+		        return 1;
+		   } 
+		   else 
+		   {
+		       return 0;
+		   }
+		}
+		else
+		{
+		      JOptionPane.showMessageDialog(null,"please field username and password ");
+		}
+		return 0;
 		
 		
 	}

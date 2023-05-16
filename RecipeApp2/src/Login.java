@@ -41,7 +41,27 @@ public class Login extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
     	//Login button function
     	if(e.getSource()== b) {
-    	    String s1=t1.getText();
+    		String s1=t1.getText();
+    	    String s2=t2.getText();
+			try {
+				if (jdbc.checkUser(s1, s2)==1) {
+					jf.getContentPane().removeAll();
+	    	    	JPanel h = new Home(jf);
+	    	    	jf.getContentPane().add(h);
+	    	    	jf.revalidate();
+				}
+				else {
+					JOptionPane.showMessageDialog(null,"username and password are wrong ");
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+    		
+    		
+    		
+    		
+    		/*String s1=t1.getText();
     	    String s2=t2.getText();
     	    if(s1.compareTo("software") == 0 && s2.compareTo("engineering") == 0) {
     	      System.out.println("success");
@@ -53,9 +73,10 @@ public class Login extends JPanel implements ActionListener {
     	    else {
     	      System.out.println("unsuccessful");
     	    }
+    	    */
     	  }
     	
-    	//Create User function
+    	//Create User function from jdbc
     	if(e.getSource() == b2) {
     		String s1=t1.getText();
     	    String s2=t2.getText();
