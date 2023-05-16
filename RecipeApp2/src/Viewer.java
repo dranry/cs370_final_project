@@ -4,8 +4,9 @@ import java.awt.event.ActionListener;
 
 public class Viewer extends JPanel implements ActionListener {
 	JFrame jf;
-	public Viewer (JFrame f) {
+	public Viewer (JFrame f, int ID) {
 		jf = f;
+		// Need to get dagtabase entry for passed ID
 	}
 	
 	public void actionPerformed(ActionEvent e) {

@@ -50,6 +50,7 @@ public class Home extends JPanel implements ActionListener{
 	    populateResults();
 	    
 	    for(Result r : results) {
+	    	r.details.addActionListener(this);
 	    	add(r);
 	    }
 	    
@@ -60,18 +61,26 @@ public class Home extends JPanel implements ActionListener{
     		case "Search":
     			break;
     		case "My Recipes":
+    			// search database for posts from this user then update results
     			break;
     		case "Details 1":
+    			// Switch to viewer for recipe assigned to first button
+    			//System.out.println("Test");
     			break;
     		case "Details 2":
+    			// Switch to viewer for second recipe
     			break;
     		case "Details 3":
+    			// Switch to viewer for third recipe
     			break;
     		case "Details 4":
+    			// Switch to viewer for fourth recipe
     			break;
     		case "Details 5":
+    			// Switch to viewer for fifth recipe
     			break;
     		case "Details 6":
+    			// Switch to viewer for sixth recipe
     			break;
     		case "->":
     			for(Result r : results) {
