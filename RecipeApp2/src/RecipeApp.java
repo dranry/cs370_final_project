@@ -8,12 +8,15 @@ public class RecipeApp extends JFrame {
 	JButton b, b2, b3;
 	public static int WIDTH = 800;
 	public static int HEIGHT = 800;
+	public static String Username;
 
     public RecipeApp() {
         setTitle("Recipe App");
         setSize(WIDTH, HEIGHT);
+        //setLayout(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setResizable(false);
         /*
         JPanel pane = new JPanel();
         JPanel pane2 = new JPanel();
