@@ -11,12 +11,13 @@ public class Home extends JPanel implements ActionListener{
 	private JTextField search_box;
 	private JLabel username;
 	private JPanel search_field;
-	private JPanel results[];
+	private Result results[];
 	
 	public Home(JFrame f) {
 		jf = f;
-		
-		results = new JPanel[6];
+    	jf.getContentPane().removeAll();
+    	
+	    results = new Result[6];
 		
 		search_field = new JPanel();
 		
@@ -38,42 +39,19 @@ public class Home extends JPanel implements ActionListener{
 	    
 	    add(search_field);
 	    
-	    for(int i = 0; i < 6; i++) {
-	        Border blackline = BorderFactory.createLineBorder(Color.black);
-	        
-	    	results[i] = new JPanel();
-	    	JPanel left = new JPanel();
-	    	left.setPreferredSize(new Dimension((RecipeApp.WIDTH)/3 - 20, (RecipeApp.HEIGHT - 180)/6));
-	    	
-	    	JPanel center = new JPanel();
-	    	center.setPreferredSize(new Dimension(RecipeApp.WIDTH/3 - 20, (RecipeApp.HEIGHT - 180)/6));
-	    	
-	    	
-	    	JPanel right = new JPanel();
-	    	right.setPreferredSize(new Dimension(RecipeApp.WIDTH/3 - 20, (RecipeApp.HEIGHT - 180)/6));
-	    	
-	    	JLabel test = new JLabel("Username");
-	    	test.setPreferredSize(new Dimension(225,30));
-	    	left.add(test);
-	    	
-	    	center.add(new JLabel("Recipe Title"));
-	    	
-	    	JButton details = new JButton("Details " + i);
-	    	details.setPreferredSize(new Dimension(210, 90));
-	    	right.add(details);
-
-	    	results[i].add(left);
-	    	results[i].add(center);
-	    	results[i].add(right);
-	    	results[i].setBorder(blackline);
-	    	
-	    	results[i].setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, (RecipeApp.HEIGHT - 170)/6));
-	    	add(results[i]);
-	    }
-	    
 	    JPanel navigation = new JPanel();
-	    navigation.add(new JLabel("Number of Pages"));
-	    navigation.add(new JButton("Next Page"));
+	    navigation.add(new JLabel("Number of Pages: "));
+	    
+	    JButton next = new JButton("->");
+	    
+	    next.addActionListener(this);
+	    navigation.add(next);
+	    
+	    populateResults();
+	    
+	    for(Result r : results) {
+	    	add(r);
+	    }
 	    
 	    add(navigation);
 	}
@@ -95,10 +73,17 @@ public class Home extends JPanel implements ActionListener{
     			break;
     		case "Details 6":
     			break;
-    		case "Next Page":
+    		case "->":
+    			for(Result r : results) {
+    				r.title.setText("WOO");
+    			}
     			break;
     		default:
     			break;
     	}
+    }
+    private void populateResults() {
+	    for(int i = 0; i < 6; i++) 
+	    	results[i] = new Result(i);
     }
 }
