@@ -10,6 +10,7 @@ public class Login extends JPanel implements ActionListener {
 	public Login(JFrame f) {
 		jf = f;
 	    b = new JButton("Login");
+	    b.setBounds(125, 250, 100, 30);
 	    b.addActionListener(this);
 	    
 	    t1 = new JTextField();

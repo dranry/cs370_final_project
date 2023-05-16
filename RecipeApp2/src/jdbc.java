@@ -91,7 +91,7 @@ public class jdbc {
 		
 		if (user.length()>0 && pass.length()>0)
 		{
-		    String query = "Select * from user_name Where Username='" + user + "' and Password='" + pass + "'";
+		    String query = "Select * from user_name Where user_name='" + user + "' and user_password='" + pass + "'";
 
 		    ResultSet rs = s.executeQuery(query);
 		    
