@@ -5,9 +5,11 @@ import java.awt.event.*;
 
 
 public class RecipeApp extends JFrame {
+	public static int id = 0;
 	JButton b, b2, b3;
 	public static int WIDTH = 800;
 	public static int HEIGHT = 800;
+	
 
     public RecipeApp() {
         setTitle("Recipe App");
