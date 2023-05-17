@@ -56,6 +56,8 @@ public class jdbc {
 			System.out.println("Congrats, " + "JDBC connenction is established successfully.\n");
 	
 	}
+	
+	// function will establish a connection and then use sql commands to create a user in the database
 	public static void createUser(String user, String pass) throws SQLException {
 		Connection con;
 		try {
@@ -75,7 +77,7 @@ public class jdbc {
 		
 		RecipeApp.id ++;
 	}
-	
+	//function checks the database to find the user and check credentials
 	public static int checkUser(String user, String pass) throws SQLException {
 		Connection con;
 		try {
@@ -114,18 +116,6 @@ public class jdbc {
 		
 	}
 	
-		/*Properties p = new Properties();
-		p.put("user", "sampleuser");
-		p.put("password", "letmein");
-		con = DriverManager.getConnection(con,p);
-		Statement s = con.createStatement();
-		ResultSet rs = s.executeQuery("select * from foodmenu");
-		while (rs.next()) {
-		System.out.println(rs.getString("item"));
-		}
-		System.out.println("It works");
-		con.close();*/
-		
 
 	
 	
