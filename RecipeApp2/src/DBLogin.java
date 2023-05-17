@@ -68,13 +68,12 @@ public class DBLogin {
 			e.printStackTrace();
 			con = null;
 		}
-		String sql = " insert into users (user_name, user_password)"
-			    + " values (?, ?)";
-		PreparedStatement preparedStmt = con.prepareStatement(sql);
+		PreparedStatement preparedStmt = con.prepareStatement("insert into users (user_name, user_password)"
+			    + " values (?, ?)");
 		  preparedStmt.setString (1, user);
 		  preparedStmt.setString (2, pass);
-		
-	}
+		  preparedStmt.execute();
+		  }
 	//function checks the database to find the user and check credentials
 	public static int checkUser(String user, String pass) throws SQLException {
 		Connection con;

@@ -46,12 +46,17 @@ public class Login extends JPanel implements ActionListener {
 		add(create_account_button);
 	}
     public void actionPerformed(ActionEvent e) {
-    	String s1 = uname.getText();
+    	s1 = uname.getText();
     	char[] ca = pword.getPassword();
-    	String s2 = String.valueOf(ca);
+    	s2 = String.valueOf(ca);
     	switch(e.getActionCommand()) {
     		case "Login":
-			goHome();
+			try {
+				goHome();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
     		try {
 				loginHandler();
 			} catch (SQLException e1) {
@@ -89,7 +94,7 @@ public class Login extends JPanel implements ActionListener {
     	RecipeApp.Username = s1;
     	goHome();
     }
-    private void goHome() {
+    private void goHome() throws SQLException {
     	jf.getContentPane().removeAll();
     	JPanel h = new Home(jf);
     	jf.getContentPane().add(h);

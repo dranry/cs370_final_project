@@ -4,6 +4,7 @@ import javax.swing.border.Border;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.StringTokenizer;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -48,12 +49,17 @@ public class Viewer extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		switch(e.getActionCommand()) {
 			case "Back":
+			try {
 				goHome();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 				break;
 		}
 		
 	}
-    private void goHome () {
+    private void goHome () throws SQLException {
     	jf.getContentPane().removeAll();
     	JPanel h = new Home(jf);
     	jf.getContentPane().add(h);

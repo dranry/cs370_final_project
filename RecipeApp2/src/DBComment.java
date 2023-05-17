@@ -39,6 +39,7 @@ public class DBComment {
 		PreparedStatement preparedStmt = con.prepareStatement(sql);
 		  preparedStmt.setString (2, comments);
 		  preparedStmt.setInt(3, recipe);
+		  preparedStmt.execute();
 	}
 	
 }

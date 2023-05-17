@@ -4,6 +4,7 @@ import javax.swing.border.Border;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.*;
 
 public class Home extends JPanel implements ActionListener{	
@@ -14,7 +15,7 @@ public class Home extends JPanel implements ActionListener{
 	private JPanel search_field;
 	private Result results[];
 	
-	public Home(JFrame f) {
+	public Home(JFrame f) throws SQLException {
 		jf = f;
     	jf.getContentPane().removeAll();
     	
@@ -100,7 +101,7 @@ public class Home extends JPanel implements ActionListener{
     			break;
     	}
     }
-    private void populateResults() {
+    private void populateResults() throws SQLException {
 	    for(int i = 0; i < 6; i++) 
 	    	results[i] = new Result(i);
     }

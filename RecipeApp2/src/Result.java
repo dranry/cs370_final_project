@@ -4,14 +4,19 @@ import javax.swing.border.Border;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.sql.SQLException;
 
 public class Result extends JPanel{
 	public JLabel title, username;
 	public JButton details;
 	public int ID;
 	
-	public Result(int i) {//, int identification) {
-		ID = 0;
+	public Result(int i) throws SQLException {//, int identification) {
+		//ID = 0;
+		
+		String [] key = DBRecipe.pullRecipe();
+		String user = key[3];
+		String recipe = key[0];
 		
         Border blackline = BorderFactory.createLineBorder(Color.black);
         
@@ -26,11 +31,11 @@ public class Result extends JPanel{
     	right.setPreferredSize(new Dimension(RecipeApp.WIDTH/3 - 20, (RecipeApp.HEIGHT - 220)/6));
     	
 
-    	username = new JLabel("Username");
+    	username = new JLabel(user);
     	username.setPreferredSize(new Dimension(225,30));
     	left.add(username);
     	
-    	title = new JLabel("Recipe Title");
+    	title = new JLabel(recipe);
     	center.add(title);
     	
     	details = new JButton("Details " + (i + 1));
@@ -45,5 +50,5 @@ public class Result extends JPanel{
     	setBorder(blackline);
     	
     	setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, (RecipeApp.HEIGHT - 170)/6));
-	}
+	}			
 }
