@@ -68,13 +68,11 @@ public class jdbc {
 			e.printStackTrace();
 			con = null;
 		}
-		String sql = " insert into user_name (id, user_name, user_password)"
-			    + " values (?, ?, ?)";
-		String s = String.valueOf(RecipeApp.id);
+		String sql = " insert into users (user_name, user_password)"
+			    + " values (?, ?)";
 		PreparedStatement preparedStmt = con.prepareStatement(sql);
-		  preparedStmt.setString (1, s);
-		  preparedStmt.setString (2, user);
-		  preparedStmt.setString (3, pass);
+		  preparedStmt.setString (1, user);
+		  preparedStmt.setString (2, pass);
 		
 	}
 	//function checks the database to find the user and check credentials
@@ -93,7 +91,7 @@ public class jdbc {
 		
 		if (user.length()>0 && pass.length()>0)
 		{
-		    String query = "Select * from user_name Where user_name='" + user + "' and user_password='" + pass + "'";
+		    String query = "Select * from users Where user_name='" + user + "' and user_password='" + pass + "'";
 
 		    ResultSet rs = s.executeQuery(query);
 		    
