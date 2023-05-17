@@ -3,7 +3,7 @@ import javax.swing.border.Border;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.StringTokenizer;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -19,10 +19,23 @@ public class Poster extends JPanel implements ActionListener{
 		JPanel head = new JPanel();
 		head.setPreferredSize(new Dimension(RecipeApp.WIDTH - 20, 50));
 		
+		JPanel left = new JPanel();
+		left.setLayout(new FlowLayout(FlowLayout.LEFT));
+		left.setPreferredSize(new Dimension(RecipeApp.WIDTH/2 - 15, 45));
+		
+		JPanel right = new JPanel();
+		right.setLayout(new FlowLayout(FlowLayout.RIGHT));
+		right.setPreferredSize(new Dimension(RecipeApp.WIDTH/2 - 15, 45));
+		
+		head.add(left);
+		head.add(right);
+		
 		JButton back = new JButton("Back");
 		back.addActionListener(this);
 		
-		head.add(back);
+		left.add(back);
+		right.add(new JLabel(RecipeApp.Username));
+		
 		
 		JPanel body = new JPanel();
 		body.setPreferredSize(new Dimension(RecipeApp.WIDTH - 20, 400));
@@ -42,6 +55,11 @@ public class Poster extends JPanel implements ActionListener{
 		switch(e.getActionCommand()) {
 			case "Back":
 				goHome();
+				break;
+			case "Post":
+				// Post action goes here
+				break;
+			default:
 				break;
 		}
 		
