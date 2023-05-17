@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class jdbc {
+public class DBLogin {
 	//variables
 	private static String url = "jdbc:mysql:///webrecipe";
 	private static String user = "root";

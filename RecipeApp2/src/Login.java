@@ -51,7 +51,8 @@ public class Login extends JPanel implements ActionListener {
     	String s2 = String.valueOf(ca);
     	switch(e.getActionCommand()) {
     		case "Login":
-			try {
+			goHome();
+    		try {
 				loginHandler();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -74,7 +75,7 @@ public class Login extends JPanel implements ActionListener {
     	// Login using database
     	// Check validity of login
     	// Store login username in RecipeApp.Username;
-    	if (jdbc.checkUser(s1, s2)==1) {
+    	if (DBLogin.checkUser(s1, s2)==1) {
     	RecipeApp.Username = s1;
     	goHome();
     	}
@@ -84,7 +85,7 @@ public class Login extends JPanel implements ActionListener {
     }
     private void creationHandler() throws SQLException {
     	// Create account in db and log in
-    	jdbc.createUser(s1, s2);
+    	DBLogin.createUser(s1, s2);
     	RecipeApp.Username = s1;
     	goHome();
     }
