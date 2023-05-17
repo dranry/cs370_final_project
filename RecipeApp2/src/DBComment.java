@@ -40,4 +40,5 @@ public class DBComment {
 		  preparedStmt.setString (2, comments);
 		  preparedStmt.setInt(3, recipe);
 	}
+	
 }
