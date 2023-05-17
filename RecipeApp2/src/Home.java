@@ -13,7 +13,6 @@ public class Home extends JPanel implements ActionListener{
 	private JLabel username;
 	private JPanel search_field;
 	private Result results[];
-	private static int recipeNumber = 0; 
 	
 	public Home(JFrame f) {
 		jf = f;

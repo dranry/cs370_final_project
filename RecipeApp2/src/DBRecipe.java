@@ -35,14 +35,15 @@ public class DBRecipe {
 			e.printStackTrace();
 			con = null;
 		}
-		String sql = " insert into recipe (name, description, instructions)"
-			    + " values (?, ?, ?, ?)";
+		String sql = " insert into recipe (name, description, instructions, user_name)"
+			    + " values (?, ?, ?, ?, ?)";
 		PreparedStatement preparedStmt = con.prepareStatement(sql);
 		  preparedStmt.setString (1, rN);
 		  preparedStmt.setString (2, rD);
 		  preparedStmt.setString (3, rI);
+		  preparedStmt.setString (4, RecipeApp.Username);
 	}
-	//returns string array, first node is name, second is description, third is instructions
+	//returns string array, first node is name, second is description, third is instructions, fourth is username
 	public static String[] pullRecipe() throws SQLException {
 		Connection con;
 		try {
@@ -55,14 +56,15 @@ public class DBRecipe {
 		Statement s = con.createStatement();
 		String query = "Select * from recipe Where id='" + recipeNumber + "'";
 	    ResultSet rs = s.executeQuery(query);
-		String name = null, description = null , instructions = null;
+		String name = null, description = null , instructions = null, user_name = null;
 	    while (rs.next()) {
 			name = rs.getString(2);
 			description = rs.getString(3);
 			instructions = rs.getString(4);
+			user_name = rs.getString(5);
 		}
 		recipeNumber++;
-		String[] strArray = new String[] {name, description, instructions};	
+		String[] strArray = new String[] {name, description, instructions, user_name};	
 		return strArray;
 		}
 	
