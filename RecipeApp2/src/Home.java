@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class Home extends JPanel implements ActionListener{	
 	private JFrame jf;
-	private JButton search_button, my_recipes;
+	private JButton search_button, my_recipes, new_post;
 	private JTextField search_box;
 	private JLabel username;
 	private JPanel search_field;
@@ -35,6 +35,10 @@ public class Home extends JPanel implements ActionListener{
 	    
 	    search_field.add(search_box);
 	    search_field.add(search_button);
+	    
+	    new_post = new JButton("New Post");
+	    new_post.addActionListener(this);
+	    search_field.add(new_post);
 	    
 	    search_field.setPreferredSize(new Dimension(RecipeApp.WIDTH, 40));
 	    
@@ -67,6 +71,7 @@ public class Home extends JPanel implements ActionListener{
     		case "Details 1":
     			// Switch to viewer for recipe assigned to first button
     			//System.out.println("Test");
+    			goViewer(results[0].ID);
     			break;
     		case "Details 2":
     			// Switch to viewer for second recipe
@@ -83,6 +88,9 @@ public class Home extends JPanel implements ActionListener{
     		case "Details 6":
     			// Switch to viewer for sixth recipe
     			break;
+    		case "New Post":
+    			goPoster();
+    			break;
     		case "->":
     			for(Result r : results) {
     				r.title.setText("WOO");
@@ -95,5 +103,17 @@ public class Home extends JPanel implements ActionListener{
     private void populateResults() {
 	    for(int i = 0; i < 6; i++) 
 	    	results[i] = new Result(i);
+    }
+    private void goViewer (int ID) {
+    	jf.getContentPane().removeAll();
+    	JPanel h = new Viewer(jf, ID);
+    	jf.getContentPane().add(h);
+    	jf.revalidate();
+    }
+    private void goPoster() {
+    	jf.getContentPane().removeAll();
+    	JPanel h = new Poster(jf);
+    	jf.getContentPane().add(h);
+    	jf.revalidate();
     }
 }
