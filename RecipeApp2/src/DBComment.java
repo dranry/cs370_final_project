@@ -25,7 +25,7 @@ public class DBComment {
 	public static String getPassword() {
 		return password;
 	}
-	public static void addComment(String comments) throws SQLException {
+	public static void addComment(String comments, int recipe) throws SQLException {
 		Connection con;
 		try {
 			con = DriverManager.getConnection(getUrl(), getUser(), getPassword());
@@ -34,9 +34,10 @@ public class DBComment {
 			e.printStackTrace();
 			con = null;
 		}
-		String sql = " insert into comment (comments)"
-			    + " values (?)";
+		String sql = " insert into comment (comments, recipe_num)"
+			    + " values (?, ?)";
 		PreparedStatement preparedStmt = con.prepareStatement(sql);
-		  preparedStmt.setString (1, comments);
+		  preparedStmt.setString (2, comments);
+		  preparedStmt.setInt(3, recipe);
 	}
 }
