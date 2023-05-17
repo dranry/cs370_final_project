@@ -16,7 +16,6 @@ public class DBRecipe {
 	private static String url = "jdbc:mysql:///webrecipe";
 	private static String user = "root";
 	private static String password = "password";
-	public static int recipeNumber = 1;
 	public static String getUrl() {
 		return url;
 	}
@@ -45,7 +44,7 @@ public class DBRecipe {
 		  preparedStmt.execute();
 	}
 	//returns string array, first node is name, second is description, third is instructions, fourth is username
-	public static String[] pullRecipe() throws SQLException {
+	public static String[] pullRecipe(int x) throws SQLException {
 		Connection con;
 		try {
 			con = DriverManager.getConnection(getUrl(), getUser(), getPassword());
@@ -55,7 +54,7 @@ public class DBRecipe {
 			con = null;
 		}
 		Statement s = con.createStatement();
-		String query = "Select * from recipe Where id='" + recipeNumber + "'";
+		String query = "Select * from recipe Where id='" + RecipeApp.recipeNumber + "'";
 	    ResultSet rs = s.executeQuery(query);
 		String name = null, ingredients = null , instructions = null, user_name = null;
 	    while (rs.next()) {
@@ -64,7 +63,6 @@ public class DBRecipe {
 			instructions = rs.getString(4);
 			user_name = rs.getString(5);
 		}
-		recipeNumber++;
 		String[] strArray = new String[] {name, ingredients, instructions, user_name};	
 		return strArray;
 		}

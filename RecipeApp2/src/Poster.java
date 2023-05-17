@@ -113,7 +113,7 @@ public class Poster extends JPanel implements ActionListener{
     	jf.getContentPane().removeAll();
     	JPanel h = new Home(jf);
     	jf.getContentPane().add(h);
-    	DBRecipe.recipeNumber=1;
+    	RecipeApp.recipeNumber=1;
     	jf.revalidate();
     }
     private static void post() throws SQLException {

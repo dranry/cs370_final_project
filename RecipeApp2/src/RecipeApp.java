@@ -11,6 +11,7 @@ public class RecipeApp extends JFrame {
 	public static int WIDTH = 800;
 	public static int HEIGHT = 800;
 	public static String Username;
+	public static int recipeNumber = 1;
 
     public RecipeApp() {
         setTitle("Recipe App");

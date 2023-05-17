@@ -14,7 +14,8 @@ public class Result extends JPanel{
 	public Result(int i) throws SQLException {//, int identification) {
 		//ID = 0;
 		
-		String [] key = DBRecipe.pullRecipe();
+		String [] key = DBRecipe.pullRecipe(RecipeApp.recipeNumber);
+		RecipeApp.recipeNumber++;
 		String user = key[3];
 		String recipe = key[0];
 		

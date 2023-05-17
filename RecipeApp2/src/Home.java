@@ -72,22 +72,63 @@ public class Home extends JPanel implements ActionListener{
     		case "Details 1":
     			// Switch to viewer for recipe assigned to first button
     			//System.out.println("Test");
-    			goViewer(results[0].ID);
+    			RecipeApp.recipeNumber = 1;
+			try {
+				goViewer(RecipeApp.recipeNumber);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     			break;
     		case "Details 2":
     			// Switch to viewer for second recipe
+    			RecipeApp.recipeNumber = 2;
+			try {
+				goViewer(RecipeApp.recipeNumber);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     			break;
     		case "Details 3":
     			// Switch to viewer for third recipe
+    			RecipeApp.recipeNumber = 3;
+			try {
+				goViewer(RecipeApp.recipeNumber);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     			break;
     		case "Details 4":
     			// Switch to viewer for fourth recipe
+    			RecipeApp.recipeNumber = 4;
+			try {
+				goViewer(RecipeApp.recipeNumber);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     			break;
     		case "Details 5":
     			// Switch to viewer for fifth recipe
+    			RecipeApp.recipeNumber = 5;
+			try {
+				goViewer(RecipeApp.recipeNumber);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     			break;
     		case "Details 6":
     			// Switch to viewer for sixth recipe
+    			RecipeApp.recipeNumber = 6;
+			try {
+				goViewer(RecipeApp.recipeNumber);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     			break;
     		case "New Post":
     			goPoster();
@@ -105,7 +146,7 @@ public class Home extends JPanel implements ActionListener{
 	    for(int i = 0; i < 6; i++) 
 	    	results[i] = new Result(i);
     }
-    private void goViewer (int ID) {
+    private void goViewer (int ID) throws SQLException {
     	jf.getContentPane().removeAll();
     	JPanel h = new Viewer(jf, ID);
     	jf.getContentPane().add(h);

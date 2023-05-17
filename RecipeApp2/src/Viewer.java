@@ -12,7 +12,9 @@ import java.awt.FlowLayout;
 
 public class Viewer extends JPanel implements ActionListener {
 	JFrame jf;
-	public Viewer (JFrame f, int ID) {
+	private JLabel title, ingredients, instructions;
+	public Viewer (JFrame f, int ID) throws SQLException {
+		
 		jf = f;
 		// Need to get database entry for passed ID
         Border blackline = BorderFactory.createLineBorder(Color.black);
@@ -41,6 +43,22 @@ public class Viewer extends JPanel implements ActionListener {
 			temp.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
 			body.add(temp);
 		}
+		//s1, s2, s3 come from sql database columns title
+		String [] key = DBRecipe.pullRecipe(RecipeApp.recipeNumber);
+		String s1 = key[0];
+		String s2 = key[1];
+		String s3 = key[2];
+		
+		title = new JLabel(s1);
+		ingredients = new JLabel(s2);
+		instructions = new JLabel(s3);
+		title.setLayout(getLayout());
+		
+		//body.add(recipe);
+		body.add(title);
+		body.add(ingredients);
+		body.add(instructions);
+		
 		add(head);
 		add(body);
 		
