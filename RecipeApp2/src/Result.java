@@ -3,8 +3,6 @@ import javax.swing.border.Border;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Result extends JPanel{
 	public JLabel title, username;
@@ -13,6 +11,7 @@ public class Result extends JPanel{
 	
 	public Result(int i) {//, int identification) {
 		ID = 0;
+		
         Border blackline = BorderFactory.createLineBorder(Color.black);
         
 		JPanel left = new JPanel();

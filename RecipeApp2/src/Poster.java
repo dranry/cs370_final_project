@@ -7,41 +7,35 @@ import java.util.StringTokenizer;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+public class Poster extends JPanel implements ActionListener{
+	private JFrame jf;
+	private JTextPane recipe;
+	public Poster(JFrame f) {
 
-public class Viewer extends JPanel implements ActionListener {
-	JFrame jf;
-	public Viewer (JFrame f, int ID) {
 		jf = f;
 		// Need to get database entry for passed ID
         Border blackline = BorderFactory.createLineBorder(Color.black);
         
-		String recipe = "This is a\ntest recipe\nwhere things will be interesting\nTest";
-		
 		JPanel head = new JPanel();
 		head.setPreferredSize(new Dimension(RecipeApp.WIDTH - 20, 50));
-		
-		JPanel body = new JPanel();
-		body.setPreferredSize(new Dimension(RecipeApp.WIDTH - 20, 400));
-		body.setBorder(blackline);
-		//body.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		JButton back = new JButton("Back");
 		back.addActionListener(this);
 		
 		head.add(back);
 		
+		JPanel body = new JPanel();
+		body.setPreferredSize(new Dimension(RecipeApp.WIDTH - 20, 400));
+		body.setBorder(blackline);
+		body.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
-		StringTokenizer st = new StringTokenizer(recipe, "\n");
-		while(st.hasMoreTokens()) {
-			JPanel temp = new JPanel();
-			temp.setLayout(new FlowLayout(FlowLayout.LEFT));
-			temp.add(new JLabel(st.nextToken(), JLabel.LEFT));
-			temp.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
-			body.add(temp);
-		}
+		recipe = new JTextPane();
+		recipe.setPreferredSize(new Dimension(RecipeApp.WIDTH - 40, 380));
+		
+		body.add(recipe);
+		
 		add(head);
 		add(body);
-		
 	}
 	
 	public void actionPerformed(ActionEvent e) {
