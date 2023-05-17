@@ -1,4 +1,5 @@
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -6,6 +7,7 @@ import java.awt.event.*;
 
 public class RecipeApp extends JFrame {
 	JButton b, b2, b3;
+	public static int id = 0; 
 	public static int WIDTH = 800;
 	public static int HEIGHT = 800;
 	public static String Username;

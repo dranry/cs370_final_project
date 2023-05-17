@@ -1,5 +1,7 @@
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.*;
 
 
@@ -10,6 +12,7 @@ public class Login extends JPanel implements ActionListener {
 	private JTextField uname;
 	private JPasswordField pword;
 	private JLabel un, pw;
+	public static String s1, s2;
 	public Login(JFrame f) {
 		jf = f;
 		
@@ -43,27 +46,47 @@ public class Login extends JPanel implements ActionListener {
 		add(create_account_button);
 	}
     public void actionPerformed(ActionEvent e) {
+    	String s1 = uname.getText();
+    	char[] ca = pword.getPassword();
+    	String s2 = String.valueOf(ca);
     	switch(e.getActionCommand()) {
     		case "Login":
-    			loginHandler();
+			try {
+				loginHandler();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     			break;
     		case "Create Account":
-    			creationHandler();
+			try {
+				creationHandler();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     			break;
     		default:
     			break;
     	}
     }
-    private void loginHandler() {
+    private void loginHandler() throws SQLException {
     	// Login using database
     	// Check validity of login
     	// Store login username in RecipeApp.Username;
-    	
-    	RecipeApp.Username = "test";
+    	if (jdbc.checkUser(s1, s2)==1) {
+    	RecipeApp.Username = s1;
     	goHome();
+    	}
+    	else {
+    		JOptionPane.showMessageDialog(null,"username and password are wrong ");
+    	}
     }
-    private void creationHandler() {
+    private void creationHandler() throws SQLException {
     	// Create account in db and log in
+    	jdbc.createUser(s1, s2);
+    	RecipeApp.Username = s1;
+    	goHome();
     }
     private void goHome() {
     	jf.getContentPane().removeAll();
