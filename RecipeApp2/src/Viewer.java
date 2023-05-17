@@ -35,23 +35,56 @@ public class Viewer extends JPanel implements ActionListener {
 		head.add(back);
 		
 		
-		StringTokenizer st = new StringTokenizer(recipe, "\n");
+		
+		//s1, s2, s3 come from sql database columns title
+		String [] key = DBRecipe.pullRecipe(RecipeApp.recipeNumber);
+		String s1 = key[0]; // Title
+		String s2 = key[1]; // Ingredients
+		String s3 = key[2]; // Instructions
+		
+
+		JPanel temp = new JPanel();
+		JPanel temp2 = new JPanel();
+		
+		// Adds Title
+		temp.setLayout(new FlowLayout(FlowLayout.LEFT));
+		temp.add(new JLabel(s1, JLabel.LEFT));
+		temp.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
+		body.add(temp);
+		
+		// Populates Ingredients
+		temp2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		temp2.add(new JLabel("Ingredients:"), JLabel.LEFT);
+		temp2.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
+		body.add(temp2);
+		
+		StringTokenizer st = new StringTokenizer(s2, "\n");
 		while(st.hasMoreTokens()) {
-			JPanel temp = new JPanel();
+			//JPanel temp = new JPanel();
 			temp.setLayout(new FlowLayout(FlowLayout.LEFT));
 			temp.add(new JLabel(st.nextToken(), JLabel.LEFT));
 			temp.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
 			body.add(temp);
 		}
-		//s1, s2, s3 come from sql database columns title
-		String [] key = DBRecipe.pullRecipe(RecipeApp.recipeNumber);
-		String s1 = key[0];
-		String s2 = key[1];
-		String s3 = key[2];
 		
-		title = new JLabel(s1);
-		ingredients = new JLabel(s2);
-		instructions = new JLabel(s3);
+		// Populates Instructions
+		temp2 = new JPanel();
+		temp2.setLayout(new FlowLayout(FlowLayout.LEFT));
+		temp2.add(new JLabel("Instructions:"), JLabel.LEFT);
+		temp2.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
+		body.add(temp2);
+		st = new StringTokenizer(s3, "\n");
+		while(st.hasMoreTokens()) {
+			//JPanel temp = new JPanel();
+			temp.setLayout(new FlowLayout(FlowLayout.LEFT));
+			temp.add(new JLabel(st.nextToken(), JLabel.LEFT));
+			temp.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
+			body.add(temp);
+		}
+		
+		//title = new JLabel(s1);
+		//ingredients = new JLabel(s2);
+		//instructions = new JLabel(s3);
 		title.setLayout(getLayout());
 		
 		//body.add(recipe);
