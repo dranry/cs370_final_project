@@ -19,20 +19,31 @@ public class Viewer extends JPanel implements ActionListener {
 		// Need to get database entry for passed ID
         Border blackline = BorderFactory.createLineBorder(Color.black);
         
-		String recipe = "This is a\ntest recipe\nwhere things will be interesting\nTest";
-		
+		int view = DBRecipe.incrementRecipe(ID);
+        
 		JPanel head = new JPanel();
 		head.setPreferredSize(new Dimension(RecipeApp.WIDTH - 20, 50));
 		
 		JPanel body = new JPanel();
 		body.setPreferredSize(new Dimension(RecipeApp.WIDTH - 20, 400));
 		body.setBorder(blackline);
-		//body.setLayout(new FlowLayout(FlowLayout.LEFT));
+
+		JPanel foot = new JPanel();
+		foot.setPreferredSize(new Dimension(RecipeApp.WIDTH - 20, 50));
 		
 		JButton back = new JButton("Back");
 		back.addActionListener(this);
 		
+		
+		String s=Integer.toString(view);
+		JLabel views = new JLabel(s);
+		
+		JLabel viewCount = new JLabel("Views ");
+		
 		head.add(back);
+		foot.add(views);
+		foot.add(viewCount);
+		
 		
 		
 		
@@ -95,6 +106,7 @@ public class Viewer extends JPanel implements ActionListener {
 		
 		add(head);
 		add(body);
+		add(foot);
 		
 	}
 	

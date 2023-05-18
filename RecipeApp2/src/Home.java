@@ -51,11 +51,15 @@ public class Home extends JPanel implements ActionListener{
 	    add(search_field);
 	    
 	    JPanel navigation = new JPanel();
-	    navigation.add(new JLabel("Number of Pages: "));
+	    
+	    JButton back = new JButton("<-");
+	    back.addActionListener(this);
 	    
 	    JButton next = new JButton("->");
-	    
 	    next.addActionListener(this);
+	    
+	    navigation.add(back);
+	    navigation.add(new JLabel("Number of Pages: "));
 	    navigation.add(next);
 	    
 	    populateResults();
@@ -104,7 +108,6 @@ public class Home extends JPanel implements ActionListener{
     			break;
     		case "Details 2":
     			// Switch to viewer for second recipe
-    			RecipeApp.recipeNumber = 2;
 			try {
 				goViewer(2);
 			} catch (SQLException e1) {
@@ -156,6 +159,14 @@ public class Home extends JPanel implements ActionListener{
     				r.title.setText("WOO");
     			}
     			break;
+    		case "<-":
+    			try {
+    				goHome();
+    			} catch (SQLException e2) {
+    				// TODO Auto-generated catch block
+    				e2.printStackTrace();
+    			}
+    			break;
     		default:
     			break;
     	}
@@ -196,6 +207,13 @@ public class Home extends JPanel implements ActionListener{
     private void MyRecipes() throws SQLException {
     	jf.getContentPane().removeAll();
     	JPanel h = new myRecipeUI(jf);
+    	jf.getContentPane().add(h);
+    	jf.revalidate();
+    }
+    private void goHome () throws SQLException {
+    	RecipeApp.recipeNumber=1;
+    	jf.getContentPane().removeAll();
+    	JPanel h = new Home(jf);
     	jf.getContentPane().add(h);
     	jf.revalidate();
     }

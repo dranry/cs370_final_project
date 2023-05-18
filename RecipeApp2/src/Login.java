@@ -52,12 +52,6 @@ public class Login extends JPanel implements ActionListener {
     	switch(e.getActionCommand()) {
     		case "Login":
 			try {
-				goHome();
-			} catch (SQLException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-    		try {
 				loginHandler();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

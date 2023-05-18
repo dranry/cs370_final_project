@@ -68,7 +68,7 @@ public class DBRecipe {
 		return strArray;
 		}
 	
-	public static void incrementRecipe() throws SQLException {
+	public static int incrementRecipe(int x) throws SQLException {
 		Connection con;
 		try {
 			con = DriverManager.getConnection(getUrl(), getUser(), getPassword());
@@ -77,11 +77,24 @@ public class DBRecipe {
 			e.printStackTrace();
 			con = null;
 		}
-		String sql = "update recipe (views)"
-			    + " values (views = views + 1)";
+		String sql = "UPDATE recipe SET views = views + 1 WHERE id = ?";
 		PreparedStatement preparedStmt = con.prepareStatement(sql);
-		  preparedStmt.execute();
+		preparedStmt.setInt(1, x);
+		preparedStmt.executeUpdate();
+		
+		String countQuery = "SELECT views FROM recipe WHERE id = ?";
+	    PreparedStatement countStmt = con.prepareStatement(countQuery);
+	    countStmt.setInt(1, x);
+	    ResultSet rs = countStmt.executeQuery();
+	    int views = 0;
+	    
+	    if (rs.next()) {
+	        views = rs.getInt("views");
+	        return views;
+	    }
+		return views;
 	}
+
 	
 	public static int[] searchRecipe(String search) throws SQLException{
 		Connection con;
