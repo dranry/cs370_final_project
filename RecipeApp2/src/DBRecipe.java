@@ -105,4 +105,28 @@ public class DBRecipe {
 		}
 		return list;
 	}
+	
+	public static int[] myRecipe(String search) throws SQLException{
+		Connection con;
+		try {
+			con = DriverManager.getConnection(getUrl(), getUser(), getPassword());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			con = null;
+		}
+		int[]list = new int [6];
+		int i = 0;
+		Statement s = con.createStatement();
+		String query = "SELECT * FROM recipe WHERE user_name='" + search + "'";
+	    ResultSet rs = s.executeQuery(query);
+		int id;
+		while (rs.next()) {
+			id = rs.getInt(1);
+			list[i]= id;
+			i++;
+		}
+		return list;
+		
+	}
 }

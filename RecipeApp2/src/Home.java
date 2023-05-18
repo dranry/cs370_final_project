@@ -30,6 +30,7 @@ public class Home extends JPanel implements ActionListener{
 		
 		my_recipes = new JButton("My Recipes");
 		search_field.add(my_recipes);
+		my_recipes.addActionListener(this);
 		
 		search_box = new JTextField();
 		search_box.setPreferredSize(new Dimension(300, 20));
@@ -70,7 +71,7 @@ public class Home extends JPanel implements ActionListener{
     		case "Search":
 			try {
 				search();
-				jf.revalidate();
+				
 			} catch (SQLException e2) {
 				// TODO Auto-generated catch block
 				e2.printStackTrace();
@@ -78,6 +79,12 @@ public class Home extends JPanel implements ActionListener{
     			break;
     		case "My Recipes":
     			// search database for posts from this user then update results
+			try {
+				MyRecipes();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
     			break;
     		case "Details 1":
     			// Switch to viewer for recipe assigned to first button
@@ -174,6 +181,14 @@ public class Home extends JPanel implements ActionListener{
     private void search() throws SQLException {
     	String s1 = search_box.getText();
     	key1 = DBRecipe.searchRecipe(s1);
+    	for (int i = 0; i<6; i++) {
+    		key = DBRecipe.pullRecipe(key1[i]);
+    		results[i] = new Result(i, key);
+    	}
+    }
+    private void MyRecipes() throws SQLException {
+    	String s1 = RecipeApp.Username;
+    	key1 = DBRecipe.myRecipe(s1);
     	for (int i = 0; i<6; i++) {
     		key = DBRecipe.pullRecipe(key1[i]);
     		results[i] = new Result(i, key);
