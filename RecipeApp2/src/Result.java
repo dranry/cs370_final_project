@@ -11,13 +11,15 @@ public class Result extends JPanel{
 	public JButton details;
 	public int ID;
 	
-	public Result(int i) throws SQLException {//, int identification) {
+	public Result(int i, String[] key) throws SQLException {//, int identification) {
 		//ID = 0;
 		
-		String [] key = DBRecipe.pullRecipe(RecipeApp.recipeNumber);
-		RecipeApp.recipeNumber++;
+		//String [] key = DBRecipe.pullRecipe(RecipeApp.recipeNumber);
+		//RecipeApp.recipeNumber++;
 		String user = key[3];
 		String recipe = key[0];
+		
+		System.out.println(recipe);
 		
         Border blackline = BorderFactory.createLineBorder(Color.black);
         
@@ -52,4 +54,6 @@ public class Result extends JPanel{
     	
     	setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, (RecipeApp.HEIGHT - 170)/6));
 	}			
+	
+
 }

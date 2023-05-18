@@ -110,10 +110,10 @@ public class Poster extends JPanel implements ActionListener{
 		
 	}
     private void goHome () throws SQLException {
+    	RecipeApp.recipeNumber=1;
     	jf.getContentPane().removeAll();
     	JPanel h = new Home(jf);
     	jf.getContentPane().add(h);
-    	RecipeApp.recipeNumber=1;
     	jf.revalidate();
     }
     private static void post() throws SQLException {

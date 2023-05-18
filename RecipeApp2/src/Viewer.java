@@ -54,13 +54,13 @@ public class Viewer extends JPanel implements ActionListener {
 		
 		// Populates Ingredients
 		temp2.setLayout(new FlowLayout(FlowLayout.LEFT));
-		temp2.add(new JLabel("Ingredients:"), JLabel.LEFT);
+		temp2.add(new JLabel("Ingredients: ", JLabel.LEFT));
 		temp2.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
 		body.add(temp2);
 		
 		StringTokenizer st = new StringTokenizer(s2, "\n");
 		while(st.hasMoreTokens()) {
-			//JPanel temp = new JPanel();
+			temp = new JPanel();
 			temp.setLayout(new FlowLayout(FlowLayout.LEFT));
 			temp.add(new JLabel(st.nextToken(), JLabel.LEFT));
 			temp.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
@@ -70,12 +70,13 @@ public class Viewer extends JPanel implements ActionListener {
 		// Populates Instructions
 		temp2 = new JPanel();
 		temp2.setLayout(new FlowLayout(FlowLayout.LEFT));
-		temp2.add(new JLabel("Instructions:"), JLabel.LEFT);
+		temp2.add(new JLabel("Instructions:", JLabel.LEFT));
 		temp2.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
 		body.add(temp2);
+		
 		st = new StringTokenizer(s3, "\n");
 		while(st.hasMoreTokens()) {
-			//JPanel temp = new JPanel();
+			temp = new JPanel();
 			temp.setLayout(new FlowLayout(FlowLayout.LEFT));
 			temp.add(new JLabel(st.nextToken(), JLabel.LEFT));
 			temp.setPreferredSize(new Dimension(RecipeApp.WIDTH - 30, 20));
@@ -85,12 +86,12 @@ public class Viewer extends JPanel implements ActionListener {
 		//title = new JLabel(s1);
 		//ingredients = new JLabel(s2);
 		//instructions = new JLabel(s3);
-		title.setLayout(getLayout());
+		//title.setLayout(getLayout());
 		
 		//body.add(recipe);
-		body.add(title);
-		body.add(ingredients);
-		body.add(instructions);
+		//body.add(title);
+		//body.add(ingredients);
+		//body.add(instructions);
 		
 		add(head);
 		add(body);
@@ -111,6 +112,7 @@ public class Viewer extends JPanel implements ActionListener {
 		
 	}
     private void goHome () throws SQLException {
+    	RecipeApp.recipeNumber = 1;
     	jf.getContentPane().removeAll();
     	JPanel h = new Home(jf);
     	jf.getContentPane().add(h);

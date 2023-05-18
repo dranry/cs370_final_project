@@ -34,13 +34,14 @@ public class DBRecipe {
 			e.printStackTrace();
 			con = null;
 		}
-		String sql = " insert into recipe (name, ingredients, instructions, user_name)"
-			    + " values (?, ?, ?, ?)";
+		String sql = " insert into recipe (name, ingredients, instructions, user_name, views)"
+			    + " values (?, ?, ?, ?, ?)";
 		PreparedStatement preparedStmt = con.prepareStatement(sql);
 		  preparedStmt.setString (1, rN);
 		  preparedStmt.setString (2, rD);
 		  preparedStmt.setString (3, rI);
 		  preparedStmt.setString (4, RecipeApp.Username);
+		  preparedStmt.setInt(5, 0);
 		  preparedStmt.execute();
 	}
 	//returns string array, first node is name, second is description, third is instructions, fourth is username
@@ -54,7 +55,7 @@ public class DBRecipe {
 			con = null;
 		}
 		Statement s = con.createStatement();
-		String query = "Select * from recipe Where id='" + RecipeApp.recipeNumber + "'";
+		String query = "Select * from recipe Where id='" + x + "'";
 	    ResultSet rs = s.executeQuery(query);
 		String name = null, ingredients = null , instructions = null, user_name = null;
 	    while (rs.next()) {
@@ -67,4 +68,41 @@ public class DBRecipe {
 		return strArray;
 		}
 	
+	public static void incrementRecipe() throws SQLException {
+		Connection con;
+		try {
+			con = DriverManager.getConnection(getUrl(), getUser(), getPassword());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			con = null;
+		}
+		String sql = "update recipe (views)"
+			    + " values (views = views + 1)";
+		PreparedStatement preparedStmt = con.prepareStatement(sql);
+		  preparedStmt.execute();
+	}
+	
+	public static int[] searchRecipe(String search) throws SQLException{
+		Connection con;
+		try {
+			con = DriverManager.getConnection(getUrl(), getUser(), getPassword());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			con = null;
+		}
+		int[]list = new int [6];
+		int i = 0;
+		Statement s = con.createStatement();
+		String query = "SELECT * FROM recipe WHERE name LIKE '%" + search + "%'";
+	    ResultSet rs = s.executeQuery(query);
+		int id;
+		while (rs.next()) {
+			id = rs.getInt(1);
+			list[i]= id;
+			i++;
+		}
+		return list;
+	}
 }

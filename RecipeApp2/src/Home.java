@@ -14,6 +14,8 @@ public class Home extends JPanel implements ActionListener{
 	private JLabel username;
 	private JPanel search_field;
 	private Result results[];
+	public static String [] key;
+	public static int [] key1;
 	
 	public Home(JFrame f) throws SQLException {
 		jf = f;
@@ -33,6 +35,7 @@ public class Home extends JPanel implements ActionListener{
 		search_box.setPreferredSize(new Dimension(300, 20));
 		
 	    search_button = new JButton("Search");
+	    search_button.addActionListener(this);
 	    
 	    search_field.add(search_box);
 	    search_field.add(search_button);
@@ -65,6 +68,13 @@ public class Home extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
     	switch(e.getActionCommand()) {
     		case "Search":
+			try {
+				search();
+				jf.revalidate();
+			} catch (SQLException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
     			break;
     		case "My Recipes":
     			// search database for posts from this user then update results
@@ -143,8 +153,11 @@ public class Home extends JPanel implements ActionListener{
     	}
     }
     private void populateResults() throws SQLException {
-	    for(int i = 0; i < 6; i++) 
-	    	results[i] = new Result(i);
+	    for(int i = 0; i < 6; i++) { 
+	    	key = DBRecipe.pullRecipe(RecipeApp.recipeNumber);
+		    RecipeApp.recipeNumber++;
+	    	results[i] = new Result(i, key);
+	    }
     }
     private void goViewer (int ID) throws SQLException {
     	jf.getContentPane().removeAll();
@@ -157,5 +170,13 @@ public class Home extends JPanel implements ActionListener{
     	JPanel h = new Poster(jf);
     	jf.getContentPane().add(h);
     	jf.revalidate();
+    }
+    private void search() throws SQLException {
+    	String s1 = search_box.getText();
+    	key1 = DBRecipe.searchRecipe(s1);
+    	for (int i = 0; i<6; i++) {
+    		key = DBRecipe.pullRecipe(key1[i]);
+    		results[i] = new Result(i, key);
+    	}
     }
 }
