@@ -72,7 +72,6 @@ public class Home extends JPanel implements ActionListener{
 	    add(navigation);
 	    
 	    searchbox = search_box.getText();
-	    System.out.println(searchbox);
 	}
     public void actionPerformed(ActionEvent e) {
     	searchbox = search_box.getText();
@@ -98,7 +97,6 @@ public class Home extends JPanel implements ActionListener{
     		case "Details 1":
     			// Switch to viewer for recipe assigned to first button
     			//System.out.println("Test");
-    			RecipeApp.recipeNumber = 1;
 			try {
 				goViewer(1);
 			} catch (SQLException e1) {
@@ -155,9 +153,12 @@ public class Home extends JPanel implements ActionListener{
     			goPoster();
     			break;
     		case "->":
-    			for(Result r : results) {
-    				r.title.setText("WOO");
-    			}
+			try {
+				goNext();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
     			break;
     		case "<-":
     			try {
@@ -214,6 +215,12 @@ public class Home extends JPanel implements ActionListener{
     	RecipeApp.recipeNumber=1;
     	jf.getContentPane().removeAll();
     	JPanel h = new Home(jf);
+    	jf.getContentPane().add(h);
+    	jf.revalidate();
+    }
+    private void goNext() throws SQLException {
+    	jf.getContentPane().removeAll();
+    	JPanel h = new nextPageUI(jf);
     	jf.getContentPane().add(h);
     	jf.revalidate();
     }
