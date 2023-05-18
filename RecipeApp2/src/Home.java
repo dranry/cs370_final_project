@@ -14,6 +14,7 @@ public class Home extends JPanel implements ActionListener{
 	private JLabel username;
 	private JPanel search_field;
 	private Result results[];
+	public static String searchbox;
 	public static String [] key;
 	public static int [] key1;
 	
@@ -65,8 +66,12 @@ public class Home extends JPanel implements ActionListener{
 	    }
 	    
 	    add(navigation);
+	    
+	    searchbox = search_box.getText();
+	    System.out.println(searchbox);
 	}
     public void actionPerformed(ActionEvent e) {
+    	searchbox = search_box.getText();
     	switch(e.getActionCommand()) {
     		case "Search":
 			try {
@@ -91,7 +96,7 @@ public class Home extends JPanel implements ActionListener{
     			//System.out.println("Test");
     			RecipeApp.recipeNumber = 1;
 			try {
-				goViewer(RecipeApp.recipeNumber);
+				goViewer(1);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -101,7 +106,7 @@ public class Home extends JPanel implements ActionListener{
     			// Switch to viewer for second recipe
     			RecipeApp.recipeNumber = 2;
 			try {
-				goViewer(RecipeApp.recipeNumber);
+				goViewer(2);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -109,9 +114,8 @@ public class Home extends JPanel implements ActionListener{
     			break;
     		case "Details 3":
     			// Switch to viewer for third recipe
-    			RecipeApp.recipeNumber = 3;
 			try {
-				goViewer(RecipeApp.recipeNumber);
+				goViewer(3);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -119,9 +123,8 @@ public class Home extends JPanel implements ActionListener{
     			break;
     		case "Details 4":
     			// Switch to viewer for fourth recipe
-    			RecipeApp.recipeNumber = 4;
 			try {
-				goViewer(RecipeApp.recipeNumber);
+				goViewer(4);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -129,9 +132,8 @@ public class Home extends JPanel implements ActionListener{
     			break;
     		case "Details 5":
     			// Switch to viewer for fifth recipe
-    			RecipeApp.recipeNumber = 5;
 			try {
-				goViewer(RecipeApp.recipeNumber);
+				goViewer(5);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -139,9 +141,8 @@ public class Home extends JPanel implements ActionListener{
     			break;
     		case "Details 6":
     			// Switch to viewer for sixth recipe
-    			RecipeApp.recipeNumber = 6;
 			try {
-				goViewer(RecipeApp.recipeNumber);
+				goViewer(6);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -179,19 +180,23 @@ public class Home extends JPanel implements ActionListener{
     	jf.revalidate();
     }
     private void search() throws SQLException {
-    	String s1 = search_box.getText();
+    	jf.getContentPane().removeAll();
+    	JPanel h = new SearchUI(jf, searchbox);
+    	jf.getContentPane().add(h);
+    	jf.revalidate();
+    	
+    	/*String s1 = search_box.getText();
     	key1 = DBRecipe.searchRecipe(s1);
     	for (int i = 0; i<6; i++) {
     		key = DBRecipe.pullRecipe(key1[i]);
     		results[i] = new Result(i, key);
     	}
+    	*/
     }
     private void MyRecipes() throws SQLException {
-    	String s1 = RecipeApp.Username;
-    	key1 = DBRecipe.myRecipe(s1);
-    	for (int i = 0; i<6; i++) {
-    		key = DBRecipe.pullRecipe(key1[i]);
-    		results[i] = new Result(i, key);
-    	}
+    	jf.getContentPane().removeAll();
+    	JPanel h = new myRecipeUI(jf);
+    	jf.getContentPane().add(h);
+    	jf.revalidate();
     }
 }

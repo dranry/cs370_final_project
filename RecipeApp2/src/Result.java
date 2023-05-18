@@ -18,9 +18,7 @@ public class Result extends JPanel{
 		//RecipeApp.recipeNumber++;
 		String user = key[3];
 		String recipe = key[0];
-		
-		System.out.println(recipe);
-		
+				
         Border blackline = BorderFactory.createLineBorder(Color.black);
         
 		JPanel left = new JPanel();

@@ -100,9 +100,13 @@ public class DBRecipe {
 		int id;
 		while (rs.next()) {
 			id = rs.getInt(1);
+			System.out.println(id);
 			list[i]= id;
 			i++;
 		}
+		//for(int x = 0; x<6;x++) {
+		//System.out.println(list[x]);
+		//}
 		return list;
 	}
 	

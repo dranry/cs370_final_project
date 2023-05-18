@@ -37,7 +37,7 @@ public class Viewer extends JPanel implements ActionListener {
 		
 		
 		//s1, s2, s3 come from sql database columns title
-		String [] key = DBRecipe.pullRecipe(RecipeApp.recipeNumber);
+		String [] key = DBRecipe.pullRecipe(ID);
 		String s1 = key[0]; // Title
 		String s2 = key[1]; // Ingredients
 		String s3 = key[2]; // Instructions
